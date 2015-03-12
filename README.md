@@ -1,5 +1,10 @@
 # etcd ssl
 
+The following tutorial will walk you through the following:
+
+- Creating a CA using the openssl command line tools.
+- Configuring etcd clients (etcdctl and curl) for SSL and SSL client auth.
+
 ## Create the CA
 
 ```
@@ -14,7 +19,7 @@ touch index.txt
 echo '01' > serial
 ```
 
-## Create the CA Certificate and Key
+### Create the CA Certificate and Key
 
 ```
 openssl req -config openssl.cnf -new -x509 -extensions v3_ca \
