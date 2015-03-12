@@ -6,9 +6,9 @@ The following tutorial will walk you through creating a CA using the openssl com
 - [Create an etcd server certificate](#create-an-etcd-server-certificate)
 - [Create an etcd client certificate](#create-an-etcd-client-certificate)
 - [Configuring etcd for SSL](#configuring-etcd-for-ssl)
-  - [Configuring etcd clients for SSL](#configuring-etcd-clients-for-ssl)
+- [Configuring etcd clients for SSL](#configuring-etcd-clients-for-ssl)
 - [Configuring etcd for client auth](#configuring-etcd-for-client-auth)
-  - [Configuring etcd clients for client auth](#configuring-etcd-clients-for-client-auth)
+- [Configuring etcd clients for client auth](#configuring-etcd-clients-for-client-auth)
 
 ## Create the CA
 
