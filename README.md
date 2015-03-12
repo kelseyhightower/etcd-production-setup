@@ -39,7 +39,7 @@ Type `ca.etcd.example.com` at the `Common Name (FQDN) []:` prompt.
 openssl x509 -in certs/ca.crt -noout -text
 ```
 
-## Create an etcd Server Certificate
+## Create an etcd server certificate
 
 If you want cert verification to work with IPs in addition to hostnames, be sure to set the SAN env var:
 
@@ -69,7 +69,7 @@ openssl ca -config openssl.cnf -extensions etcd_server \
 openssl x509 -in certs/etcd0.example.com.crt -noout -text
 ```
 
-## Create a Client Certificate
+## Create an etcd client certificate
 
 ```
 unset SAN
