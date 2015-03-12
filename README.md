@@ -121,11 +121,11 @@ openssl ca -config openssl.cnf -extensions etcd_client \
 
 Type `etcd-client` at the `Common Name (FQDN) []:` prompt.
 
-### Configuring etcd for SSL
+## Configuring etcd for SSL
 
 Configure etcd
 
-#### etcd0.example.com
+### etcd0.example.com
 
 ```
 $ etcd --name etcd0 \
@@ -144,7 +144,7 @@ $ etcd --name etcd0 \
   --peer-ca-file ca.crt
 ```
 
-#### etcd1.example.com
+### etcd1.example.com
 
 ```
 etcd --name etcd1 \
@@ -163,7 +163,7 @@ etcd --name etcd1 \
   --peer-ca-file ca.crt
 ```
 
-#### etcd2.example.com
+### etcd2.example.com
 
 ```
 etcd --name etcd2 \
