@@ -122,7 +122,7 @@ $ etcdctl -C https://etcd0.example.com:2379 --ca-file ca.crt set foo bar
 etcdctl -C https://etcd0.example.com:2379 --ca-file ca.crt get foo
 ```
 
-### Configuring etcd for client auth
+### Configuring etcd clients for client auth
 
 ```
 $ etcd --advertise-client-urls https://etcd0.example.com:2379 \
