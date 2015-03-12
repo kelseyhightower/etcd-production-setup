@@ -2,7 +2,7 @@
 
 This tutorial will walk you through setting up DNS for the example.com domain. This guide is mainly for etcd testing.
 
-The goal is to end up with the follow DNS address usable for local testing:
+The goal is to end up with the following DNS address usable for local testing:
 
 ```
 $ dig +noall +answer SRV _etcd-server._tcp.example.com
@@ -18,7 +18,7 @@ etcd1.example.com.	300	IN	A	10.0.1.11
 etcd2.example.com.	300	IN	A	10.0.1.12
 ```
 
-The 10.0.1.x addresses are served by the upstream nameserver 
+The 10.0.1.x addresses are served by the upstream nameserver -- which is a real DNS nameserver (216.239.32.106) running on GCE. 
 
 ## Add IP aliases
 
