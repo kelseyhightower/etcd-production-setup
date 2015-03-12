@@ -26,8 +26,8 @@ preserve         = no
 policy           = policy_etcd
 
 [ policy_etcd ]
-organizationName    = optional
-commonName          = supplied
+organizationName = optional
+commonName       = supplied
 
 [ req ]
 default_bits       = 4096
