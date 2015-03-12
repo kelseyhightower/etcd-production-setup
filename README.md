@@ -39,13 +39,15 @@ Type `ca.etcd.example.com` at the `Common Name (FQDN) []:` prompt.
 openssl x509 -in certs/ca.crt -noout -text
 ```
 
-## Create an etcd server certificate
+## Create the etcd server certificates
 
 If you want cert verification to work with IPs in addition to hostnames, be sure to set the SAN env var:
 
 ```
 export SAN="IP:127.0.0.1, IP:10.0.1.10"
 ```
+
+### etcd0.example.com
 
 ```
 openssl req -config openssl.cnf -new -nodes \
@@ -67,6 +69,34 @@ openssl ca -config openssl.cnf -extensions etcd_server \
 
 ```
 openssl x509 -in certs/etcd0.example.com.crt -noout -text
+```
+
+### etcd1.example.com
+
+```
+openssl req -config openssl.cnf -new -nodes \
+  -keyout private/etcd1.example.com.key -out etcd1.example.com.csr
+```
+
+```
+openssl ca -config openssl.cnf -extensions etcd_server \
+  -keyfile private/ca.key \
+  -cert certs/ca.crt \
+  -out certs/etcd1.example.com.crt -infiles etcd1.example.com.csr
+```
+
+### etcd2.example.com
+
+```
+openssl req -config openssl.cnf -new -nodes \
+  -keyout private/etcd1.example.com.key -out etcd1.example.com.csr
+```
+
+```
+openssl ca -config openssl.cnf -extensions etcd_server \
+  -keyfile private/ca.key \
+  -cert certs/ca.crt \
+  -out certs/etcd1.example.com.crt -infiles etcd1.example.com.csr
 ```
 
 ## Create an etcd client certificate
