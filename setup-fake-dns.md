@@ -20,6 +20,14 @@ etcd2.example.com.	300	IN	A	10.0.1.12
 
 The 10.0.1.x addresses are served by the upstream nameserver 
 
+## Add IP aliases
+
+```
+$ sudo ifconfig en0 alias 10.0.1.10/32
+$ sudo ifconfig en0 alias 10.0.1.11/32
+$ sudo ifconfig en0 alias 10.0.1.12/32
+```
+
 ## Update resolve.conf
 
 Add the following entry to `/etc/reslov.conf`
