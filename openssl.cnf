@@ -44,7 +44,6 @@ countryName_default        = US
 countryName_min            = 2
 countryName_max            = 2
 commonName                 = Common Name (FQDN) 
-commonName_default         = ${ENV::CN} 
 0.organizationName         = Organization Name (eg, company)
 0.organizationName_default = etcd-ca
 
