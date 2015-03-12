@@ -5,6 +5,14 @@ The following tutorial will walk you through the following:
 - Creating a CA using the openssl command line tools.
 - Configuring etcd clients (etcdctl and curl) for SSL and SSL client auth.
 
+- [Create the CA](#create-the-ca)
+- [Create an etcd server certificate](#create-an-etcd-server-certificate)
+- [Create an etcd client certificate](#create-an-etcd-client-certificate)
+- [Configuring etcd for SSL](#configuring-etcd-for-ssl)
+  - [Configuring etcd clients for SSL](#configuring-etcd-clients-for-ssl)
+- [Configuring etcd for client auth](#configuring-etcd-for-client-auth)
+  - [Configuring etcd clients for client auth](#configuring-etcd-clients-for-client-auth)
+
 ## Create the CA
 
 ```
@@ -84,7 +92,7 @@ openssl ca -config openssl.cnf -extensions etcd_client \
 
 Type `etcd-client` at the `Common Name (FQDN) []:` prompt.
 
-### Testing SSL
+### Configuring etcd for SSL
 
 Configure etcd
 
@@ -95,7 +103,9 @@ $ etcd --advertise-client-urls https://etcd0.example.com:2379 \
   --key-file etcd0.example.com.key
 ```
 
-#### Using cURL
+### Configuring etcd clients for SSL
+
+#### cURL
 
 ```
 $ curl --cacert ca.crt -XPUT -v https://etcd0.example.com:2379/v2/keys/foo -d value=bar
@@ -105,7 +115,7 @@ $ curl --cacert ca.crt -XPUT -v https://etcd0.example.com:2379/v2/keys/foo -d va
 $ curl --cacert ca.crt -v https://etcd0.example.com:2379/v2/keys
 ```
 
-#### Using etcdctl
+#### etcdctl
 
 ```
 $ etcdctl -C https://etcd0.example.com:2379 --ca-file ca.crt set foo bar 
@@ -115,7 +125,7 @@ $ etcdctl -C https://etcd0.example.com:2379 --ca-file ca.crt set foo bar
 etcdctl -C https://etcd0.example.com:2379 --ca-file ca.crt get foo
 ```
 
-### Testing Client Auth
+### Configuring etcd for client auth
 
 ```
 $ etcd --advertise-client-urls https://etcd0.example.com:2379 \
@@ -127,7 +137,9 @@ $ etcd --advertise-client-urls https://etcd0.example.com:2379 \
 
 Notice the usage of the `--ca-file` flag. This is what enables client auth.
 
-#### With etcdctl
+### Configuring etcd clients for client auth
+
+#### etcdctl
 
 ```
 $ etcdctl -C https://etcd0.example.com:2379 \
