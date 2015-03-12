@@ -1,9 +1,6 @@
 # etcd ssl
 
-The following tutorial will walk you through the following:
-
-- Creating a CA using the openssl command line tools.
-- Configuring etcd clients (etcdctl and curl) for SSL and SSL client auth.
+The following tutorial will walk you through creating a CA using the openssl command line tools and configuring etcd clients for SSL and client auth.
 
 - [Create the CA](#create-the-ca)
 - [Create an etcd server certificate](#create-an-etcd-server-certificate)
