@@ -33,7 +33,7 @@ openssl req -config openssl.cnf -new -x509 -extensions v3_ca \
 
 Type `ca.etcd.example.com` at the `Common Name (FQDN) []:` prompt.
 
-### Verify the CA Certificate
+#### Verify the CA Certificate
 
 ```
 openssl x509 -in certs/ca.crt -noout -text
@@ -56,7 +56,7 @@ openssl req -config openssl.cnf -new -nodes \
 
 Type `etcd0.example.com` at the `Common Name (FQDN) []:` prompt.
 
-### Sign the cert
+#### Sign the cert
 
 ```
 openssl ca -config openssl.cnf -extensions etcd_server \
@@ -65,11 +65,13 @@ openssl ca -config openssl.cnf -extensions etcd_server \
   -out certs/etcd0.example.com.crt -infiles etcd0.example.com.csr
 ```
 
-### Verify the etcd Server Certificate
+#### Verify the etcd Server Certificate
 
 ```
 openssl x509 -in certs/etcd0.example.com.crt -noout -text
 ```
+
+At this point we can generate certs for the other two etcd members.
 
 ### etcd1.example.com
 
@@ -89,14 +91,14 @@ openssl ca -config openssl.cnf -extensions etcd_server \
 
 ```
 openssl req -config openssl.cnf -new -nodes \
-  -keyout private/etcd1.example.com.key -out etcd1.example.com.csr
+  -keyout private/etcd2.example.com.key -out etcd2.example.com.csr
 ```
 
 ```
 openssl ca -config openssl.cnf -extensions etcd_server \
   -keyfile private/ca.key \
   -cert certs/ca.crt \
-  -out certs/etcd1.example.com.crt -infiles etcd1.example.com.csr
+  -out certs/etcd2.example.com.crt -infiles etcd2.example.com.csr
 ```
 
 ## Create an etcd client certificate
