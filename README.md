@@ -125,11 +125,61 @@ Type `etcd-client` at the `Common Name (FQDN) []:` prompt.
 
 Configure etcd
 
+#### etcd0.example.com
+
 ```
-$ etcd --advertise-client-urls https://etcd0.example.com:2379 \
+$ etcd --name etcd0 \
+  --advertise-client-urls https://etcd0.example.com:2379 \
   --listen-client-urls https://10.0.1.10:2379 \
+  --listen-peer-urls https://10.0.1.10:2380 \
+  --initial-advertise-peer-urls https://etcd0.example.com:2380 \
+  --initial-cluster etcd0=https://etcd0.example.com:2380,etcd1=https://etcd1.example.com:2380,etcd2=https://etcd2.example.com:2380 \
+  --initial-cluster-token etcd-ssl-cluster-0 \
+  --initial-cluster-state new \
   --cert-file etcd0.example.com.crt \
-  --key-file etcd0.example.com.key
+  --key-file etcd0.example.com.key \
+  --peer-cert-file etcd0.example.com.crt \
+  --peer-key-file etcd0.example.com.key \
+  --ca-file ca.crt \
+  --peer-ca-file ca.crt
+```
+
+#### etcd1.example.com
+
+```
+etcd --name etcd1 \
+  --advertise-client-urls https://etcd1.example.com:2379 \
+  --listen-client-urls https://10.0.1.11:2379 \
+  --listen-peer-urls https://10.0.1.11:2380 \
+  --initial-advertise-peer-urls https://etcd1.example.com:2380 \
+  --initial-cluster etcd0=https://etcd0.example.com:2380,etcd1=https://etcd1.example.com:2380,etcd2=https://etcd2.example.com:2380 \
+  --initial-cluster-token etcd-ssl-cluster-0 \
+  --initial-cluster-state new \
+  --cert-file etcd1.example.com.crt \
+  --key-file etcd1.example.com.key \
+  --peer-cert-file etcd1.example.com.crt \
+  --peer-key-file etcd1.example.com.key \
+  --ca-file ca.crt \
+  --peer-ca-file ca.crt
+```
+
+#### etcd2.example.com
+
+```
+etcd --name etcd2 \
+  --advertise-client-urls https://etcd2.example.com:2379 \
+  --listen-client-urls https://10.0.1.12:2379 \
+  --listen-peer-urls https://10.0.1.12:2380 \
+  --initial-advertise-peer-urls https://etcd2.example.com:2380 \
+  --initial-cluster etcd0=https://etcd0.example.com:2380,etcd1=https://etcd1.example.com:2380,etcd2=https://etcd2.example.com:2380 \
+  --initial-cluster-token etcd-ssl-cluster-0 \
+  --initial-cluster-state new \
+  --cert-file etcd2.example.com.crt \
+  --key-file etcd2.example.com.key \
+  --peer-cert-file etcd2.example.com.crt \
+  --peer-key-file etcd2.example.com.key \
+  --ca-file ca.crt \
+  --peer-ca-file ca.crt
 ```
 
 ### Configuring etcd clients for SSL
