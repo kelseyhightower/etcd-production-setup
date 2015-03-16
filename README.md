@@ -9,6 +9,7 @@ The following tutorial will walk you through creating a CA using the openssl com
   - [Configuring etcd clients for SSL](#configuring-etcd-clients-for-ssl)
 - [Configuring etcd for client auth](#configuring-etcd-for-client-auth)
   - [Configuring etcd clients for client auth](#configuring-etcd-clients-for-client-auth)
+- [Create full certificate set using github.com/coreos/etcd-ca](#create-full-certificate-set-using-githubcomcoreosetcd-ca)
 
 ## Create the CA
 
@@ -144,4 +145,30 @@ $ etcdctl -C https://etcd0.example.com:2379 \
   --key-file etcd-client.key \
   --ca-file ca.crt \
   get foo
+```
+
+## Create full certificate set using github.com/coreos/etcd-ca
+
+Detailed guide is [here](https://github.com/coreos/etcd-ca).
+
+### Init and create CA
+
+```
+$ ./etcd-ca init
+```
+
+### Create an etcd server certificate
+
+```
+$ ./etcd-ca new-cert -ip $IP -domain $DOMAIN etcd-server
+$ ./etcd-ca sign etcd-server
+$ ./etcd-ca export -insecure etcd-server | tar xvf -
+```
+
+### Create and etcd client certificate
+
+```
+$ ./etcd-ca new-cert etcd-client
+$ ./etcd-ca sign etcd-client
+$ ./etcd-ca export -insecure etcd-client | tar xvf -
 ```
